@@ -60,7 +60,7 @@ const App = () => {
         <Box mx={7} my={4}>
           <Button
             danger
-            backgroundColor="green"
+            backgroundColor="#B980F0"
             onPress={() => setShowAddTodoScreen(true)}>
             Add Todo
           </Button>
@@ -73,7 +73,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#313D5A',
+    backgroundColor: '#B980F0',
   },
   headerText: {
     color: 'white',

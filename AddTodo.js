@@ -10,32 +10,48 @@ import {
 // import {Icon} from 'react-native-elements';
 import {
   NativeBaseProvider,
-  Container,
-  Text,
-  FlatList,
   Box,
-  Button,
-  SimpleGrid,
-  IconButton,
-  Checkbox,
+  Text,
+  Heading,
   VStack,
-  HStack,
+  FormControl,
+  Input,
+  Link,
+  Button,
   Icon,
-  List,
+  IconButton,
+  HStack,
+  Divider,
 } from 'native-base';
 import {} from 'react-native/Libraries/NewAppScreen';
 
-const AddTodo = ({todoList}) => {
+const AddTodo = () => {
   const isDarkMode = useColorScheme() === 'dark';
-
+  const [text, setText] = useState('');
   return (
     <NativeBaseProvider>
       <VStack>
         <Box style={styles.header} py={5} pl={2}>
           <Text style={styles.headerText}>Hello Todo</Text>
         </Box>
-        <Text>Hello Todo</Text>
-        <Text>Add todo screen</Text>
+        <Box p={4} w="90%" mx="auto">
+          <Heading size="lg" color="primary.500">
+            Add Todo
+          </Heading>
+          <VStack space={2} mt={5}>
+            <FormControl>
+              <FormControl.Label
+                _text={{color: 'muted.700', fontSize: 'sm', fontWeight: 600}}>
+                Add Title
+              </FormControl.Label>
+              <Input onChangeText={setText} />
+            </FormControl>
+            <Text>{text}</Text>
+            <Button colorScheme="cyan" _text={{color: 'white'}}>
+              Login
+            </Button>
+          </VStack>
+        </Box>
       </VStack>
     </NativeBaseProvider>
   );
@@ -43,7 +59,7 @@ const AddTodo = ({todoList}) => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#313D5A',
+    backgroundColor: '#B980F0',
   },
   headerText: {
     color: 'white',
