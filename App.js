@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import TodoList from './TodoList';
+import AddTodo from './AddTodo';
 import {
   NativeBaseProvider,
   Container,
@@ -27,25 +28,28 @@ import {
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const [showAddTodoScreen, setShowAddTodoScreen] = useState(false);
   const [isReady, setIsReady] = useState(false);
-  const [todoList, setTodoList]=useState([
+  const [todoList, setTodoList] = useState([
     {
-      id:1,
-      title:'First Item',
-      completed:false
+      id: 1,
+      title: 'First Item',
+      completed: false,
     },
     {
-      id:2,
-      title:'Second Item',
-      completed:false
+      id: 2,
+      title: 'Second Item',
+      completed: false,
     },
-  ])
+  ]);
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   useEffect(() => {}, []);
-
+  if (showAddTodoScreen) {
+    return <AddTodo />;
+  }
   return (
     <NativeBaseProvider>
       <VStack>
@@ -53,8 +57,13 @@ const App = () => {
           <Text style={styles.headerText}>Hello Todo</Text>
         </Box>
         <Text>Hello Todo</Text>
-        <Box mx={7}>
-          <Button danger>Add Todo</Button>
+        <Box mx={7} my={4}>
+          <Button
+            danger
+            backgroundColor="green"
+            onPress={() => setShowAddTodoScreen(true)}>
+            Add Todo
+          </Button>
         </Box>
         <TodoList todoList={todoList}></TodoList>
       </VStack>
@@ -64,7 +73,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: 'blue',
+    backgroundColor: '#313D5A',
   },
   headerText: {
     color: 'white',
