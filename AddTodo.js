@@ -25,7 +25,7 @@ import {
 } from 'native-base';
 import {} from 'react-native/Libraries/NewAppScreen';
 
-const AddTodo = () => {
+const AddTodo = ({addTodoItem}) => {
   const isDarkMode = useColorScheme() === 'dark';
   const [text, setText] = useState('');
   return (
@@ -46,9 +46,11 @@ const AddTodo = () => {
               </FormControl.Label>
               <Input onChangeText={setText} />
             </FormControl>
-            <Text>{text}</Text>
-            <Button colorScheme="cyan" _text={{color: 'white'}}>
-              Login
+            <Button
+              onPress={() => addTodoItem(text)}
+              colorScheme="cyan"
+              _text={{color: 'white'}}>
+              Add
             </Button>
           </VStack>
         </Box>

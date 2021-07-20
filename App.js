@@ -30,6 +30,7 @@ const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const [showAddTodoScreen, setShowAddTodoScreen] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [counter, setCounter] = useState(3);
   const [todoList, setTodoList] = useState([
     {
       id: 1,
@@ -45,10 +46,20 @@ const App = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const addTodoItem = text => {
+    const todoItem = {
+      id: counter,
+      title: text,
+      completed: false,
+    };
+    setCounter(counter + 1);
+    setTodoList([...todoList, todoItem]);
+    setShowAddTodoScreen(false);
+  };
 
   useEffect(() => {}, []);
   if (showAddTodoScreen) {
-    return <AddTodo />;
+    return <AddTodo addTodoItem={addTodoItem} />;
   }
   return (
     <NativeBaseProvider>
