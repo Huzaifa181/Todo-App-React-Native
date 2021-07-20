@@ -76,7 +76,7 @@ const App = () => {
             Add Todo
           </Button>
         </Box>
-        <TodoList todoList={todoList}></TodoList>
+        <TodoList todoList={todoList} setTodoList={setTodoList}></TodoList>
       </VStack>
     </NativeBaseProvider>
   );
