@@ -22,15 +22,16 @@ import {
 } from 'native-base';
 import {} from 'react-native/Libraries/NewAppScreen';
 
-const Todo = () => {
+const Todo = ({todoList}) => {
   const isDarkMode = useColorScheme() === 'dark';
-
+  
   return (
     <List spacing={2} my={2}>
-      <List.Item>Inferno</List.Item>
-      <List.Item>Mirage</List.Item>
-      <List.Item>Dust 2</List.Item>
-      <List.Item>Nuke</List.Item>
+      {todoList.map((ele)=>{
+        return(
+          <List.Item key={ele.id}>{ele.title}</List.Item>
+        )   
+      })}
     </List>
   );
 };
