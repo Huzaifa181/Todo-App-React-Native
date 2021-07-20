@@ -27,6 +27,7 @@ import {} from 'react-native/Libraries/NewAppScreen';
 
 const Todo = ({todoList, setTodoList}) => {
   const isDarkMode = useColorScheme() === 'dark';
+
   const updateCheckBox = id => {
     const updatedList = todoList.map(item => {
       if (item.id === id) {
@@ -36,6 +37,12 @@ const Todo = ({todoList, setTodoList}) => {
         };
       }
       return item;
+    });
+    setTodoList(updatedList);
+  };
+  const deleteItem = id => {
+    const updatedList = todoList.filter(item => {
+      return item.id != id;
     });
     setTodoList(updatedList);
   };
@@ -54,7 +61,13 @@ const Todo = ({todoList, setTodoList}) => {
               />
             </View>
             <Text style={{flex: 6}}>{ele.title}</Text>
-            <Icon name="trash" style={{flex: 1}} />
+            <Icon
+              name="trash"
+              style={{flex: 1}}
+              onPress={() => {
+                deleteItem(ele.id);
+              }}
+            />
           </List.Item>
         );
       })}
